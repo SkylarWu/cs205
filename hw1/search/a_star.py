@@ -37,7 +37,6 @@ def a_star(start_board, goal, hn_func, grid):
     """
     visited = set()
     ancestors = {} # for reconstruct path usage
-    ancestors[tuple(start_board)] = None
     fn_heap = []
     start_fn = hn_func(start_board, goal, grid) + 0
     heappush(fn_heap, (start_fn, 0, start_board)) # (fn, gn, board)
@@ -53,7 +52,7 @@ def a_star(start_board, goal, hn_func, grid):
         visited.add(board_tuple)
 
         for neigh in neighbor_create(board, grid):
-            neigh_tuple = tuple(neigh)
+            neigh_tuple = tuple(neigh) 
             if neigh_tuple in visited: # if neighbor is visited, pass
                 continue
             ancestors[neigh_tuple] = board_tuple # record the new board's ancestor
@@ -87,4 +86,5 @@ def trace_print(path, grid):
             line = board[row * grid : (row + 1) * grid]
             formatted = " ".join("_" if n == 0 else str(n) for n in line)
             print(formatted)
+
 
