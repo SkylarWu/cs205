@@ -35,6 +35,11 @@ def a_star(start_board, goal, hn_func, grid):
         - hn_func: 1)hn_uniform, 2)hn_manhattan, 3)hn_misplaced
         - grid: grid size
     """
+    # Performance tracking variables
+    expanded_nodes = 0
+    max_queue_size = 0
+    iterations = 0
+
     visited = set()
     ancestors = {} # for reconstruct path usage
     fn_heap = []
@@ -45,10 +50,15 @@ def a_star(start_board, goal, hn_func, grid):
         fn, gn, board = heappop(fn_heap)
         board_tuple = tuple(board)
 
+        max_queue_size = max(max_queue_size, len(fn_heap))
+        iterations += 1
+
         if board_tuple in visited: # if visited, pass
             continue
         if board == goal: # if reach the goal, return steps and path
-            return gn, reconstruct_path(ancestors, board_tuple)
+            return gn, reconstruct_path(ancestors, board_tuple), \
+                                expanded_nodes, max_queue_size, iterations
+        expanded_nodes += 1
         visited.add(board_tuple)
 
         for neigh in neighbor_create(board, grid):
@@ -60,7 +70,7 @@ def a_star(start_board, goal, hn_func, grid):
             fn = new_gn + hn_func(neigh, goal, grid)
             heappush(fn_heap, (fn, new_gn, neigh)) # add into heap
 
-    return -1, [] # error
+    return -1, [], expanded_nodes, max_queue_size, iterations # error
 
 
 def reconstruct_path(ancestors, curr_board):

@@ -91,13 +91,19 @@ def main():
         sys.exit(1)
 
     # execute A*
-    steps, path = a_star(start_board, goal, hn_func, grid)
+    steps, path, expanded_nodes, max_queue_size, iterations = a_star(
+        start_board, goal, hn_func, grid
+    )
+
 
     # out put
     if steps == -1:
         print("No solution found.")
     else:
-        print(f"Solved in {steps} steps.")
+        print(f"This puzzle can be solved in {steps} steps.")
+        print(f"Nodes Expanded: {expanded_nodes}")
+        print(f"Max Queue Size: {max_queue_size}")
+        print(f"Iterations: {iterations}")
         trace_print(path, grid)
 
 
