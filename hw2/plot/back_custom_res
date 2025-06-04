@@ -1,0 +1,15 @@
+-> % time python3 main.py --file ../data/transfusion_formatted.txt --method backward
+Dataset info: 4 features, 748 instances.
+  - Without any search algorithm, the baseline is 68.45%
+
+On level 1 of the search tree, ([0, 1, 2, 3], 0.68449) is best
+    Using feature(s) {1,2,3,4} accuracy is 68.45%
+On level 2 of the search tree, ([0, 2, 3], 0.68449) is best
+    Using feature(s) {2,3,4} accuracy is 65.11%
+    Using feature(s) {1,3,4} accuracy is 68.45%
+    Using feature(s) {1,2,4} accuracy is 67.11%
+    Using feature(s) {1,2,3} accuracy is 60.70%
+
+Best feature(s): {1,2,3,4} with accuracy 68.45%
+
+python3 main.py --file ../data/transfusion_formatted.txt --method backward  4.06s user 0.07s system 93% cpu 4.397 total

@@ -1,0 +1,17 @@
+-> % time python3 main.py --file ../data/transfusion_formatted.txt --method forward
+Dataset info: 4 features, 748 instances.
+  - Without any search algorithm, the baseline is 68.45%
+
+On level 1 of the search tree, ([0], 0.69251) is best
+    Using feature(s) {1} accuracy is 69.25%
+    Using feature(s) {2} accuracy is 47.86%
+    Using feature(s) {3} accuracy is 47.86%
+    Using feature(s) {4} accuracy is 49.73%
+On level 2 of the search tree, ([0, 3], 0.6885) is best
+    Using feature(s) {1,2} accuracy is 61.50%
+    Using feature(s) {1,3} accuracy is 60.70%
+    Using feature(s) {1,4} accuracy is 68.85%
+
+Best feature(s): {1} with accuracy 69.25%
+
+python3 main.py --file ../data/transfusion_formatted.txt --method forward  3.85s user 0.05s system 97% cpu 3.982 total

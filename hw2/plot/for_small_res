@@ -1,0 +1,44 @@
+-> % time python3 main.py --file ../data/CS205_small_Data__42.txt --method forward
+Dataset info: 12 features, 500 instances.
+  - Without any search algorithm, the baseline is 72.00%
+
+On level 1 of the search tree, ([5], 0.858) is best
+    Using feature(s) {1} accuracy is 66.20%
+    Using feature(s) {2} accuracy is 69.40%
+    Using feature(s) {3} accuracy is 73.20%
+    Using feature(s) {4} accuracy is 75.00%
+    Using feature(s) {5} accuracy is 73.20%
+    Using feature(s) {6} accuracy is 85.80%
+    Using feature(s) {7} accuracy is 72.80%
+    Using feature(s) {8} accuracy is 72.20%
+    Using feature(s) {9} accuracy is 68.20%
+    Using feature(s) {10} accuracy is 71.40%
+    Using feature(s) {11} accuracy is 69.20%
+    Using feature(s) {12} accuracy is 70.60%
+On level 2 of the search tree, ([5, 6], 0.944) is best
+    Using feature(s) {6,1} accuracy is 80.80%
+    Using feature(s) {6,2} accuracy is 82.60%
+    Using feature(s) {6,3} accuracy is 85.40%
+    Using feature(s) {6,4} accuracy is 85.60%
+    Using feature(s) {6,5} accuracy is 81.40%
+    Using feature(s) {6,7} accuracy is 94.40%
+    Using feature(s) {6,8} accuracy is 84.60%
+    Using feature(s) {6,9} accuracy is 86.00%
+    Using feature(s) {6,10} accuracy is 86.20%
+    Using feature(s) {6,11} accuracy is 84.20%
+    Using feature(s) {6,12} accuracy is 83.00%
+On level 3 of the search tree, ([5, 6, 8], 0.932) is best
+    Using feature(s) {6,7,1} accuracy is 91.80%
+    Using feature(s) {6,7,2} accuracy is 92.00%
+    Using feature(s) {6,7,3} accuracy is 92.80%
+    Using feature(s) {6,7,4} accuracy is 91.60%
+    Using feature(s) {6,7,5} accuracy is 92.40%
+    Using feature(s) {6,7,8} accuracy is 92.40%
+    Using feature(s) {6,7,9} accuracy is 93.20%
+    Using feature(s) {6,7,10} accuracy is 90.00%
+    Using feature(s) {6,7,11} accuracy is 92.20%
+    Using feature(s) {6,7,12} accuracy is 90.20%
+
+Best feature(s): {6,7} with accuracy 94.40%
+
+python3 main.py --file ../data/CS205_small_Data__42.txt --method forward  8.05s user 0.07s system 98% cpu 8.251 total
