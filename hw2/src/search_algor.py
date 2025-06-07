@@ -1,15 +1,17 @@
 from util import loocv
 
 
-def forward_selection(data, total_feature):
+def forward_selection(data, total_feature, early_stop=True):
     selected = []
     left = list(range(total_feature))
+    # best in whole
     best_accuracy = 0.0
     history = []
 
     while left:
         level_history = []
         best_feature = None
+        # best in this level
         best_feature_acc = 0.0
 
         for feature in left:
@@ -25,17 +27,18 @@ def forward_selection(data, total_feature):
         history.append(level_history)  # Save this level's test results
 
         # if a better feature was found, keep it and continue
-        if best_feature is not None and best_feature_acc > best_accuracy:
+        if best_feature is not None and (not early_stop or best_feature_acc > best_accuracy):
             selected.append(best_feature)
             left.remove(best_feature)
-            best_accuracy = best_feature_acc
-        else:
+            if best_feature_acc > best_accuracy:
+                best_accuracy = best_feature_acc
+        elif early_stop:
             break
 
     return selected, best_accuracy, history
 
 
-def backward_elimination(data, total_features):
+def backward_elimination(data, total_features, early_stop=True):
     selected = list(range(total_features))
     best_accuracy = loocv(data, selected)
     history = [[(selected[:], best_accuracy)]]
@@ -58,11 +61,12 @@ def backward_elimination(data, total_features):
         history.append(level_history)
 
         # if accuracy improves, remove the feature
-        if best_feature_acc > best_accuracy:
+        if worst_feature is not None:
             selected.remove(worst_feature)
-            best_accuracy = best_feature_acc
-        else:
-            break
+            if best_feature_acc > best_accuracy:
+                best_accuracy = best_feature_acc
+            elif early_stop:
+                break
 
     return selected, best_accuracy, history
 
